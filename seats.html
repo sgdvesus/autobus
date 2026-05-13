@@ -3,290 +3,252 @@
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <script src="[https://cdn.tailwindcss.com?plugins=forms,container-queries](https://cdn.tailwindcss.com?plugins=forms,container-queries)"></script>
-    <link href="[https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Metropolis:wght@600;700;800&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap](https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Metropolis:wght@600;700;800&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap)" rel="stylesheet"/>
+    <title>Acosta | Selección de Asientos</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Metropolis:wght@600;700;800&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
     <style>
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-        }
-        body {
-            font-family: 'Inter', sans-serif;
-        }
-        .headline-font {
-            font-family: 'Metropolis', sans-serif;
-        }
-        /* Estilos para scrollbar en el diagrama del bus si es necesario */
-        .no-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        body { font-family: 'Inter', sans-serif; }
+        .font-headline { font-family: 'Metropolis', sans-serif; }
+        
+        /* Animación suave para la selección */
+        .seat-transition { transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); }
+        
+        /* Estética del pasillo del bus */
+        .bus-aisle { background-image: radial-gradient(#cbd5e1 1px, transparent 1px); background-size: 10px 10px; }
     </style>
     <script id="tailwind-config">
         tailwind.config = {
-          darkMode: "class",
-          theme: {
-            extend: {
-              "colors": {
-                  "on-surface-variant": "#44474d",
-                  "surface-container": "#e7eeff",
-                  "secondary-fixed": "#ffdea5",
-                  "primary-container": "#1a2b48",
-                  "primary": "#031632",
-                  "secondary": "#775a19",
-                  "background": "#f9f9ff",
-                  "on-primary": "#ffffff",
-                  "on-background": "#121c2c",
-                  "outline-variant": "#c5c6ce",
-                  "outline": "#75777e",
-                  "on-primary-container": "#8293b5",
-                  "on-secondary-fixed-variant": "#5d4201"
-              },
-              "spacing": {
-                  "margin-mobile": "16px",
-                  "margin-desktop": "64px",
-                  "container-max": "1200px",
-                  "gutter": "24px"
-              }
-            },
-          },
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#031632",
+                        "secondary": "#775a19",
+                        "secondary-fixed": "#ffdea5",
+                        "primary-container": "#1a2b48",
+                        "surface-container": "#e7eeff",
+                        "background": "#f9f9ff",
+                        "on-primary": "#ffffff",
+                        "outline-variant": "#c5c6ce"
+                    }
+                }
+            }
         }
     </script>
 </head>
-<body class="bg-background text-on-background">
+<body class="bg-background text-[#121c2c]">
 
-<!-- TopNavBar -->
-<header class="fixed top-0 w-full z-50 bg-primary shadow-md">
-    <div class="max-w-[1200px] mx-auto px-<4 md:px-8 py-4 flex justify-between items-center">
-        <div class="text-2xl font-bold text-on-primary headline-font">Acosta</div>
-        <nav class="hidden lg:flex gap-8 items-center text-sm">
-            <a class="text-on-primary font-medium hover:text-secondary-fixed transition-colors" href="index.html">Inicio</a>
-            <a class="text-on-primary font-medium hover:text-secondary-fixed transition-colors" href="#">Mis Viajes</a>
-            <a class="text-on-primary font-medium hover:text-secondary-fixed transition-colors" href="#">Facturación</a>
-            <a class="text-on-primary font-medium hover:text-secondary-fixed transition-colors" href="#">Atención a Clientes</a>
+<!-- Header -->
+<header class="fixed top-0 w-full z-50 bg-primary shadow-lg">
+    <div class="max-w-[1200px] mx-auto px-6 py-4 flex justify-between items-center">
+        <div class="text-2xl font-bold text-white font-headline">Acosta</div>
+        <nav class="hidden md:flex gap-8 text-sm font-medium text-white/80">
+            <a href="index.html" class="hover:text-secondary-fixed transition-colors">Inicio</a>
+            <a href="#" class="hover:text-secondary-fixed transition-colors">Mis Viajes</a>
+            <a href="#" class="hover:text-secondary-fixed transition-colors">Ayuda</a>
         </nav>
-        <button class="bg-secondary-fixed text-on-secondary-fixed-variant px-6 py-2 rounded-lg font-bold text-sm hover:brightness-110 active:scale-95 transition-all">
-            Iniciar Sesión
-        </button>
+        <div class="flex items-center gap-4">
+            <span class="hidden sm:inline text-white/60 text-xs font-bold">PASO 2 DE 3</span>
+            <button class="bg-secondary text-white px-5 py-2 rounded-lg font-bold text-sm">Mi Cuenta</button>
+        </div>
     </div>
 </header>
 
-<main class="pt-28 pb-16 max-w-[1200px] mx-auto px-4 md:px-8">
+<main class="pt-24 pb-16 max-w-[1200px] mx-auto px-4 md:px-8">
     
-    <!-- Breadcrumbs / Selection Info -->
-    <section class="mb-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+    <!-- Info Section -->
+    <div class="mb-8 flex flex-col md:flex-row justify-between items-end gap-4 border-b border-slate-200 pb-6">
         <div>
-            <h1 class="text-2xl md:text-3xl font-bold text-primary headline-font">Selecciona tus asientos</h1>
-            <p class="text-on-surface-variant flex items-center gap-2">
-                <span class="material-symbols-outlined text-sm">directions_bus</span>
-                Clase Ejecutiva · Autobús 402
-            </p>
+            <h1 class="text-3xl font-black text-primary font-headline mb-1">Elige tus lugares</h1>
+            <p class="text-slate-500 font-medium">Villahermosa <span class="text-secondary">→</span> Mérida | 15 Oct, 2024</p>
         </div>
-        <div class="bg-surface-container p-3 rounded-xl border border-outline-variant flex gap-6 text-sm">
-            <div class="flex flex-col">
-                <span class="text-[10px] font-bold opacity-60 uppercase">Origen</span>
-                <span class="font-bold">Villahermosa</span>
+        <div class="flex gap-4">
+            <div class="flex items-center gap-2">
+                <div class="w-4 h-4 rounded bg-white border-2 border-emerald-500"></div>
+                <span class="text-xs font-bold text-slate-600">Libre</span>
             </div>
-            <div class="flex items-center text-secondary">
-                <span class="material-symbols-outlined">arrow_forward</span>
+            <div class="flex items-center gap-2">
+                <div class="w-4 h-4 rounded bg-slate-300"></div>
+                <span class="text-xs font-bold text-slate-600">Ocupado</span>
             </div>
-            <div class="flex flex-col">
-                <span class="text-[10px] font-bold opacity-60 uppercase">Destino</span>
-                <span class="font-bold">Mérida</span>
+            <div class="flex items-center gap-2">
+                <div class="w-4 h-4 rounded bg-secondary"></div>
+                <span class="text-xs font-bold text-slate-600">Seleccionado</span>
             </div>
         </div>
-    </section>
+    </div>
 
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
         
-        <!-- Bus Layout Container -->
-        <div class="lg:col-span-8 bg-white p-6 md:p-10 rounded-2xl border border-outline-variant shadow-sm">
-            
-            <!-- Legend -->
-            <div class="flex flex-wrap justify-center gap-8 mb-12 py-4 bg-background rounded-xl border border-dashed border-outline-variant">
-                <div class="flex items-center gap-2">
-                    <div class="w-6 h-6 rounded border-2 border-[#10B981] bg-white"></div>
-                    <span class="text-xs font-bold text-on-surface-variant">Disponible</span>
-                </div>
-                <div class="flex items-center gap-2">
-                    <div class="w-6 h-6 rounded bg-[#D1D5DB]"></div>
-                    <span class="text-xs font-bold text-on-surface-variant">Ocupado</span>
-                </div>
-                <div class="flex items-center gap-2">
-                    <div class="w-6 h-6 rounded bg-secondary"></div>
-                    <span class="text-xs font-bold text-on-surface-variant">Tu selección</span>
-                </div>
-            </div>
-
-            <!-- The Bus Shell -->
-            <div class="relative max-w-[320px] mx-auto bg-slate-100 p-8 pt-16 rounded-[4rem] border-x-8 border-b-8 border-t-[12px] border-slate-300">
-                <!-- Windshield / Driver area -->
-                <div class="absolute top-4 left-1/2 -translate-x-1/2 w-20 h-1.5 bg-slate-400 rounded-full opacity-40"></div>
-                <div class="flex justify-between mb-10 px-4">
-                    <span class="material-symbols-outlined text-slate-400">steering_wheel</span>
-                    <span class="material-symbols-outlined text-slate-400">sensor_door</span>
+        <!-- Bus Column -->
+        <div class="lg:col-span-7 xl:col-span-8 flex justify-center">
+            <div class="relative bg-white p-8 md:p-12 rounded-[3.5rem] border-x-[10px] border-b-[10px] border-t-[16px] border-slate-200 shadow-2xl w-full max-w-sm">
+                
+                <!-- Driver Section -->
+                <div class="flex justify-between items-center mb-12 px-2 border-b border-slate-100 pb-8">
+                    <div class="w-12 h-12 rounded-full bg-slate-100 flex items-center justify-center text-slate-400">
+                        <span class="material-symbols-outlined text-3xl">steering_wheel</span>
+                    </div>
+                    <div class="text-right">
+                        <p class="text-[10px] font-bold text-slate-400 uppercase tracking-tighter">Entrada</p>
+                        <span class="material-symbols-outlined text-slate-300">door_front</span>
+                    </div>
                 </div>
 
-                <!-- Seat Grid -->
-                <div id="bus-grid" class="grid grid-cols-4 gap-y-4 gap-x-2">
-                    <!-- Seats will be generated or styled here -->
+                <!-- Seats Grid -->
+                <div id="bus-map" class="grid grid-cols-4 gap-4 relative">
+                    <!-- Aisle Overlay -->
+                    <div class="absolute inset-y-0 left-1/2 -translate-x-1/2 w-8 bus-aisle opacity-20"></div>
+
                     <!-- Row 1 -->
-                    <div class="w-12 h```
-
-### Características de esta página:
-1.  **Interactividad Real:** He incluido una función `toggleSeat` que permite al usuario marcar asientos. Cambian de color al estilo "Acosta" (Dorado/C5A059).
-2.  **Cálculo Dinámico:** El panel lateral derecho se actualiza automáticamente sumando el total basándose en los asientos seleccionados.
-3.  **Diseño Responsive:** Al igual que `search.html`, en móviles el resumen de compra se ajusta y el diagrama del autobús mantiene un tamaño legible.
-4.  **Estados Visuales:**
-    *   **Gris:** Ocupado (No clickeable).
-    *   **Borde Verde:** Disponible.
-    *   **Dorado:** Tu selección actual.-12 bg-[#D1D5DB] rounded-lg flex items-center justify-center text-white text-xs font-bold">01</div>
-                    <div class="w-12 h-12 bg-[#D1D5DB] rounded-lg flex items-center justify-center text-white text-xs font-bold">02</div>
-                    <div class="col-span-1"></div> <!-- Pasillo -->
-                    <div class="seat available w-12 h-12 border-2 border-[#10B981] bg-white rounded-lg flex items-center justify-center text-[#10B981] text-xs font-bold cursor-pointer hover:bg-emerald-50 transition-all" data-id="03">03</div>
+                    <button class="seat occupied w-full aspect-square bg-slate-200 rounded-xl cursor-not-allowed opacity-50 flex items-center justify-center text-[10px] font-bold" disabled>1</button>
+                    <button class="seat occupied w-full aspect-square bg-slate-200 rounded-xl cursor-not-allowed opacity-50 flex items-center justify-center text-[10px] font-bold" disabled>2</button>
+                    <div class="col-span-1"></div> <!-- Espacio Pasillo -->
+                    <button data-seat="3" class="seat-btn available w-full aspect-square border-2 border-emerald-500 bg-white rounded-xl seat-transition hover:bg-emerald-50 flex items-center justify-center text-[10px] font-bold text-emerald-600">3</button>
 
                     <!-- Row 2 -->
-                    <div class="seat available w-12 h-12 border-2 border-[#10B981] bg-white rounded-lg flex items-center justify-center text-[#10B981] text-xs font-bold cursor-pointer hover:bg-emerald-50 transition-all" data-id="04">04</div>
-                    <div class="seat available w-12 h-12 border-2 border-[#10B981] bg-white rounded-lg flex items-center justify-center text-[#10B981] text-xs font-bold cursor-pointer hover:bg-emerald-50 transition-all" data-id="05">05</div>
+                    <button data-seat="4" class="seat-btn available w-full aspect-square border-2 border-emerald-500 bg-white rounded-xl seat-transition hover:bg-emerald-50 flex items-center justify-center text-[10px] font-bold text-emerald-600">4</button>
+                    <button data-seat="5" class="seat-btn available w-full aspect-square border-2 border-emerald-500 bg-white rounded-xl seat-transition hover:bg-emerald-50 flex items-center justify-center text-[10px] font-bold text-emerald-600">5</button>
                     <div class="col-span-1"></div>
-                    <div class="w-12 h-12 bg-[#D1D5DB] rounded-lg flex items-center justify-center text-white text-xs font-bold">06</div>
+                    <button data-seat="6" class="seat-btn available w-full aspect-square border-2 border-emerald-500 bg-white rounded-xl seat-transition hover:bg-emerald-50 flex items-center justify-center text-[10px] font-bold text-emerald-600">6</button>
 
                     <!-- Row 3 -->
-                    <div class="seat available w-12 h-12 border-2 border-[#10B981] bg-white rounded-lg flex items-center justify-center text-[#10B981] text-xs font-bold cursor-pointer hover:bg-emerald-50 transition-all" data-id="07">07</div>
-                    <div class="seat available w-12 h-12 border-2 border-[#10B981] bg-white rounded-lg flex items-center justify-center text-[#10B981] text-xs font-bold cursor-pointer hover:bg-emerald-50 transition-all" data-id="08">08</div>
+                    <button data-seat="7" class="seat-btn available w-full aspect-square border-2 border-emerald-500 bg-white rounded-xl seat-transition hover:bg-emerald-50 flex items-center justify-center text-[10px] font-bold text-emerald-600">7</button>
+                    <button data-seat="8" class="seat-btn available w-full aspect-square border-2 border-emerald-500 bg-white rounded-xl seat-transition hover:bg-emerald-50 flex items-center justify-center text-[10px] font-bold text-emerald-600">8</button>
                     <div class="col-span-1"></div>
-                    <div class="seat available w-12 h-12 border-2 border-[#10B981] bg-white rounded-lg flex items-center justify-center text-[#10B981] text-xs font-bold cursor-pointer hover:bg-emerald-50 transition-all" data-id="09">09</div>
+                    <button class="seat occupied w-full aspect-square bg-slate-200 rounded-xl cursor-not-allowed opacity-50 flex items-center justify-center text-[10px] font-bold" disabled>9</button>
 
                     <!-- Row 4 -->
-                    <div class="w-12 h-12 bg-[#D1D5DB] rounded-lg flex items-center justify-center text-white text-xs font-bold">10</div>
-                    <div class="seat available w-12 h-12 border-2 border-[#10B981] bg-white rounded-lg flex items-center justify-center text-[#10B981] text-xs font-bold cursor-pointer hover:bg-emerald-50 transition-all" data-id="11">11</div>
+                    <button data-seat="10" class="seat-btn available w-full aspect-square border-2 border-emerald-500 bg-white rounded-xl seat-transition hover:bg-emerald-50 flex items-center justify-center text-[10px] font-bold text-emerald-600">10</button>
+                    <button data-seat="11" class="seat-btn available w-full aspect-square border-2 border-emerald-500 bg-white rounded-xl seat-transition hover:bg-emerald-50 flex items-center justify-center text-[10px] font-bold text-emerald-600">11</button>
                     <div class="col-span-1"></div>
-                    <div class="seat available w-12 h-12 border-2 border-[#10B981] bg-white rounded-lg flex items-center justify-center text-[#10B981] text-xs font-bold cursor-pointer hover:bg-emerald-50 transition-all" data-id="12">12</div>
+                    <button data-seat="12" class="seat-btn available w-full aspect-square border-2 border-emerald-500 bg-white rounded-xl seat-transition hover:bg-emerald-50 flex items-center justify-center text-[10px] font-bold text-emerald-600">12</button>
                 </div>
 
-                <!-- Back Area -->
-                <div class="mt-12 pt-6 border-t border-slate-300 flex justify-around">
-                    <span class="material-symbols-outlined text-slate-300">wc</span>
-                    <span class="material-symbols-outlined text-slate-300">coffee</span>
+                <!-- Back Section -->
+                <div class="mt-12 pt-8 border-t border-slate-100 flex justify-around opacity-30">
+                    <span class="material-symbols-outlined">wc</span>
+                    <span class="material-symbols-outlined">coffee</span>
                 </div>
             </div>
         </div>
 
-        <!-- Checkout Sidebar -->
-        <aside class="lg:col-span-4 space-y-6">
-            <div class="bg-white rounded-2xl border border-outline-variant shadow-lg overflow-hidden">
-                <div class="bg-primary p-4">
-                    <h2 class="text-white font-bold headline-font flex items-center gap-2">
-                        <span class="material-symbols-outlined text-secondary-fixed">confirmation_number</span>
-                        Resumen de Selección
-                    </h2>
-                </div>
-                
-                <div class="p-6 space-y-6">
-                    <!-- Details -->
-                    <div class="space-y-3">
-                        <div class="flex justify-between text-sm">
-                            <span class="text-on-surface-variant">Viaje:</span>
-                            <span class="font-bold text-primary">VSA - MID</span>
-                        </div>
-                        <div class="flex justify-between text-sm">
-                            <span class="text-on-surface-variant">Asientos:</span>
-                            <span id="selected-seats-list" class="font-bold text-secondary italic">Ninguno</span>
-                        </div>
-                        <div class="flex justify-between text-sm">
-                            <span class="text-on-surface-variant">Precio Unitario:</span>
-                            <span class="font-bold text-primary">$1,450.00</span>
-                        </div>
+        <!-- Summary Column -->
+        <aside class="lg:col-span-5 xl:col-span-4">
+            <div class="sticky top-28 space-y-6">
+                <!-- Trip Summary Card -->
+                <div class="bg-white rounded-2xl shadow-xl border border-slate-100 overflow-hidden">
+                    <div class="bg-primary-container p-6 text-white">
+                        <p class="text-[10px] font-bold text-secondary-fixed uppercase tracking-widest mb-1">Tu Viaje</p>
+                        <h3 class="text-xl font-headline font-bold">Clase Acosta Ejecutivo</h3>
                     </div>
-
-                    <div class="pt-4 border-t border-outline-variant">
+                    
+                    <div class="p-6 space-y-4">
                         <div class="flex justify-between items-center">
-                            <span class="text-lg font-bold text-primary">Total:</span>
-                            <span id="total-price" class="text-2xl font-black text-primary headline-font">$0.00</span>
+                            <span class="text-sm text-slate-500 font-medium">Asientos seleccionados:</span>
+                            <span id="selected-list" class="text-sm font-black text-primary">Ninguno</span>
                         </div>
-                        <p class="text-[10px] text-on-surface-variant mt-1 italic text-right">*Impuestos incluidos</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-slate-500 font-medium">Precio por boleto:</span>
+                            <span class="text-sm font-bold text-primary">$1,450.00</span>
+                        </div>
+                        <hr class="border-slate-100">
+                        <div class="flex justify-between items-end">
+                            <span class="text-primary font-bold">Total a pagar:</span>
+                            <div class="text-right">
+                                <p id="total-price" class="text-3xl font-black text-primary font-headline">$0.00</p>
+                                <p class="text-[10px] text-slate-400 font-bold uppercase">MXN IVA INC.</p>
+                            </div>
+                        </div>
                     </div>
 
-                    <button id="btn-continue" disabled class="w-full bg-slate-200 text-slate-500 py-4 rounded-xl font-bold transition-all flex items-center justify-center gap-2 cursor-not-allowed">
-                        Continuar a Pago
-                        <span class="material-symbols-outlined">payments</span>
-                    </button>
+                    <div class="p-6 bg-slate-50 border-t border-slate-100">
+                        <button id="checkout-btn" disabled class="w-full py-4 rounded-xl font-bold text-sm transition-all flex items-center justify-center gap-2 bg-slate-200 text-slate-400 cursor-not-allowed">
+                            Continuar al Pago
+                            <span class="material-symbols-outlined text-lg">arrow_forward</span>
+                        </button>
+                    </div>
                 </div>
-            </div>
 
-            <!-- Features Reminder -->
-            <div class="bg-surface-container p-6 rounded-2xl border border-blue-100">
-                <h3 class="font-bold text-primary mb-2 flex items-center gap-2">
-                    <span class="material-symbols-outlined text-sm">verified</span>
-                    Tu viaje incluye:
-                </h3>
-                <ul class="text-xs space-y-2 text-on-surface-variant">
-                    <li class="flex items-center gap-2"><span class="material-symbols-outlined text-blue-500 text-xs">check_circle</span> WiFi de alta velocidad</li>
-                    <li class="flex items-center gap-2"><span class="material-symbols-outlined text-blue-500 text-xs">check_circle</span> Conexión eléctrica individual</li>
-                    <li class="flex items-center gap-2"><span class="material-symbols-outlined text-blue-500 text-xs">check_circle</span> Pantalla táctil de 12"</li>
-                </ul>
+                <!-- Features -->
+                <div class="p-6 bg-secondary-fixed/30 rounded-2xl border border-secondary-fixed/50">
+                    <h4 class="font-bold text-secondary text-sm mb-3 flex items-center gap-2">
+                        <span class="material-symbols-outlined text-lg">verified</span>
+                        Viajas con total comodidad
+                    </h4>
+                    <ul class="space-y-2">
+                        <li class="flex items-center gap-3 text-xs text-secondary font-medium">
+                            <span class="material-symbols-outlined text-sm">wifi</span> WiFi de cortesía
+                        </li>
+                        <li class="flex items-center gap-3 text-xs text-secondary font-medium">
+                            <span class="material-symbols-outlined text-sm">airline_seat_recline_extra</span> Reclinación 160°
+                        </li>
+                    </ul>
+                </div>
             </div>
         </aside>
     </div>
 </main>
 
-<footer class="bg-primary text-on-primary py-12 mt-12 border-t border-primary-container">
-    <div class="max-w-[1200px] mx-auto px-4 text-center">
-        <div class="text-2xl font-bold text-secondary-fixed mb-6 headline-font">Acosta</div>
-        <div class="flex flex-wrap justify-center gap-6 text-xs opacity-70 mb-8">
-            <a href="#" class="hover:text-white underline-offset-4 hover:underline">Aviso de Privacidad</a>
-            <a href="#" class="hover:text-white underline-offset-4 hover:underline">Términos y Condiciones</a>
-            <a href="#" class="hover:text-white underline-offset-4 hover:underline">Contacto</a>
+<footer class="bg-primary text-white py-12 mt-20">
+    <div class="max-w-[1200px] mx-auto px-8 flex flex-col md:flex-row justify-between items-center gap-8">
+        <div class="text-2xl font-headline font-bold text-secondary-fixed">Acosta</div>
+        <p class="text-xs text-white/40">© 2024 Acosta Ejecutivo. Todos los derechos reservados.</p>
+        <div class="flex gap-6">
+            <span class="material-symbols-outlined opacity-50 hover:opacity-100 cursor-pointer">facebook</span>
+            <span class="material-symbols-outlined opacity-50 hover:opacity-100 cursor-pointer">language</span>
         </div>
-        <p class="text-xs opacity-50">© 2024 Acosta. Todos los derechos reservados. Transporte Ejecutivo del Sureste.</p>
     </div>
 </footer>
 
 <script>
-    // Lógica simple de selección
-    const seats = document.querySelectorAll('.seat.available');
-    const seatsListDisplay = document.getElementById('selected-seats-list');
-    const totalPriceDisplay = document.getElementById('total-price');
-    const btnContinue = document.getElementById('btn-continue');
-    const PRICE_PER_SEAT = 1450;
+    const seatBtns = document.querySelectorAll('.seat-btn');
+    const selectedList = document.getElementById('selected-list');
+    const totalPrice = document.getElementById('total-price');
+    const checkoutBtn = document.getElementById('checkout-btn');
     
     let selectedSeats = [];
+    const PRICE = 1450;
 
-    seats.forEach(seat => {
-        seat.addEventListener('click', () => {
-            const seatId = seat.getAttribute('data-id');
+    seatBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const seatNum = btn.getAttribute('data-seat');
 
-            if (selectedSeats.includes(seatId)) {
+            if (selectedSeats.includes(seatNum)) {
                 // Deseleccionar
-                selectedSeats = selectedSeats.filter(id => id !== seatId);
-                seat.classList.remove('bg-secondary', 'text-white', 'border-secondary');
-                seat.classList.add('bg-white', 'text-[#10B981]', 'border-[#10B981]');
+                selectedSeats = selectedSeats.filter(s => s !== seatNum);
+                btn.classList.remove('bg-secondary', 'text-white', 'border-secondary');
+                btn.classList.add('bg-white', 'text-emerald-600', 'border-emerald-500');
             } else {
                 // Seleccionar
-                selectedSeats.push(seatId);
-                seat.classList.add('bg-secondary', 'text-white', 'border-secondary');
-                seat.classList.remove('bg-white', 'text-[#10B981]', 'border-[#10B981]');
+                selectedSeats.push(seatNum);
+                btn.classList.add('bg-secondary', 'text-white', 'border-secondary');
+                btn.classList.remove('bg-white', 'text-emerald-600', 'border-emerald-500');
             }
 
-            updateSummary();
+            updateUI();
         });
     });
 
-    function updateSummary() {
+    function updateUI() {
+        // Actualizar lista
+        selectedList.textContent = selectedSeats.length > 0 
+            ? selectedSeats.sort((a,b) => a-b).join(', ') 
+            : 'Ninguno';
+
+        // Actualizar precio
+        const total = selectedSeats.length * PRICE;
+        totalPrice.textContent = `$${total.toLocaleString('es-MX', {minimumFractionDigits: 2})}`;
+
+        // Habilitar botón
         if (selectedSeats.length > 0) {
-            seatsListDisplay.textContent = selectedSeats.sort().join(', ');
-            totalPriceDisplay.textContent = `$${(selectedSeats.length * PRICE_PER_SEAT).toLocaleString()}.00`;
-            
-            // Habilitar botón
-            btnContinue.disabled = false;
-            btnContinue.classList.remove('bg-slate-200', 'text-slate-500', 'cursor-not-allowed');
-            btnContinue.classList.add('bg-secondary', 'text-white', 'hover:brightness-110', 'active:scale-95', 'shadow-lg');
+            checkoutBtn.disabled = false;
+            checkoutBtn.classList.remove('bg-slate-200', 'text-slate-400', 'cursor-not-allowed');
+            checkoutBtn.classList.add('bg-secondary', 'text-white', 'hover:brightness-110', 'shadow-lg', 'shadow-secondary/20');
         } else {
-            seatsListDisplay.textContent = 'Ninguno';
-            totalPriceDisplay.textContent = '$0.00';
-            
-            // Deshabilitar botón
-            btnContinue.disabled = true;
-            btnContinue.classList.add('bg-slate-200', 'text-slate-500', 'cursor-not-allowed');
-            btnContinue.classList.remove('bg-secondary', 'text-white', 'hover:brightness-110', 'active:scale-95', 'shadow-lg');
+            checkoutBtn.disabled = true;
+            checkoutBtn.classList.add('bg-slate-200', 'text-slate-400', 'cursor-not-allowed');
+            checkoutBtn.classList.remove('bg-secondary', 'text-white', 'hover:brightness-110', 'shadow-lg', 'shadow-secondary/20');
         }
     }
 </script>
