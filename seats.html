@@ -5,13 +5,9 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <title>Acosta | Selección de Asientos</title>
     
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Google Fonts & Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Metropolis:wght@600;700;800&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
     
-    <!-- Configuración de Tema Sincronizada -->
     <script>
         tailwind.config = {
             theme: {
@@ -22,12 +18,9 @@
                         "secondary-fixed": "#ffdea5",
                         "on-secondary-fixed-variant": "#5d4201",
                         "background": "#f9f9ff",
-                        "on-background": "#121c2c",
-                        "surface-container": "#e7eeff",
                         "surface-container-lowest": "#ffffff",
                         "on-surface-variant": "#44474d",
                         "outline-variant": "#c5c6ce",
-                        "outline": "#75777e",
                     },
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
@@ -40,11 +33,10 @@
 
     <style type="text/tailwindcss">
         @layer base {
-            body { @apply bg-background text-on-background font-sans antialiased; }
-            h1, h2, h3 { @apply font-headline; }
+            body { @apply bg-background text-[#121c2c] font-sans antialiased; }
+            h1, h2 { @apply font-headline; }
         }
 
-        /* Prevención de desborde de iconos (Fix para steering_wheel) */
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
             display: inline-block;
@@ -61,21 +53,15 @@
 
         .bus-aisle { 
             background-image: radial-gradient(#cbd5e1 1.5px, transparent 1.5px); 
-            background-size: 12px 12px; 
+            background-size: 10px 10px; 
         }
     </style>
 </head>
 <body>
 
-    <!-- Header -->
     <header class="fixed top-0 w-full z-50 bg-primary shadow-lg">
         <div class="max-w-[1200px] mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="text-2xl font-bold text-white font-headline tracking-tight">Acosta</div>
-            <nav class="hidden md:flex gap-8 text-sm font-medium text-white/80">
-                <a href="index.html" class="hover:text-secondary-fixed transition-colors">Inicio</a>
-                <a href="#" class="hover:text-secondary-fixed transition-colors">Mis Viajes</a>
-                <a href="#" class="hover:text-secondary-fixed transition-colors">Facturación</a>
-            </nav>
+            <div class="text-2xl font-bold text-white font-headline tracking-tighter italic">Acosta</div>
             <button class="bg-secondary-fixed text-on-secondary-fixed-variant px-5 py-2 rounded-lg font-bold text-sm hover:brightness-110 active:scale-95 transition-all">
                 Iniciar Sesión
             </button>
@@ -84,123 +70,92 @@
 
     <main class="pt-32 pb-16 max-w-[1200px] mx-auto px-4 md:px-8">
         
-        <!-- Encabezado -->
         <div class="mb-10">
-            <h1 class="text-3xl md:text-4xl font-black text-primary mb-2 italic">Selección de Asientos</h1>
-            <p class="text-on-surface-variant font-medium">Elige tu lugar preferido para tu viaje a Mérida.</p>
+            <h1 class="text-3xl font-black text-primary mb-2 italic">Selección de Asientos</h1>
+            <p class="text-on-surface-variant font-medium">Autobús Clase Ejecutiva - Destino: Mérida</p>
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
             
-            <!-- CONTENEDOR DEL BUS -->
+            <!-- CONTENEDOR DEL AUTOBÚS -->
             <section class="lg:col-span-8 bg-surface-container-lowest p-6 md:p-10 rounded-3xl border border-outline-variant shadow-sm">
                 
-                <!-- Leyenda -->
-                <div class="flex flex-wrap gap-6 mb-12 pb-6 border-b border-outline-variant justify-center md:justify-start">
+                <div class="flex flex-wrap gap-6 mb-12 pb-6 border-b border-outline-variant justify-center">
                     <div class="flex items-center gap-2">
                         <div class="w-5 h-5 rounded border-2 border-[#10B981] bg-white"></div>
-                        <span class="text-xs font-bold text-on-surface-variant uppercase tracking-wider">Disponible</span>
+                        <span class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">Libre</span>
                     </div>
                     <div class="flex items-center gap-2">
-                        <div class="w-5 h-5 rounded bg-[#D1D5DB]"></div>
-                        <span class="text-xs font-bold text-on-surface-variant uppercase tracking-wider">Ocupado</span>
+                        <div class="w-5 h-5 rounded bg-slate-200"></div>
+                        <span class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">Ocupado</span>
                     </div>
                     <div class="flex items-center gap-2">
                         <div class="w-5 h-5 rounded bg-secondary"></div>
-                        <span class="text-xs font-bold text-on-surface-variant uppercase tracking-wider">Tu Selección</span>
+                        <span class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">Selección</span>
                     </div>
                 </div>
 
-                <!-- Estructura Física del Bus -->
-                <div class="relative max-w-[320px] mx-auto bg-slate-50 p-8 pt-12 pb-12 rounded-[4rem] border-x-[6px] border-b-[10px] border-t-[20px] border-slate-200 shadow-2xl">
+                <!-- Chasis del Bus -->
+                <div class="relative max-w-[300px] mx-auto bg-white p-6 pt-10 pb-10 rounded-[3rem] border-x-[4px] border-b-[8px] border-t-[16px] border-slate-200 shadow-xl">
                     
-                    <!-- Cabina (Iconos protegidos) -->
-                    <div class="flex justify-between items-center mb-12 px-2">
-                        <div class="w-12 h-12 flex items-center justify-center bg-slate-100 rounded-full text-slate-400">
-                            <span class="material-symbols-outlined notranslate text-2xl">steering_wheel</span>
+                    <!-- Frente / Cabina -->
+                    <div class="flex justify-between items-center mb-10 px-2">
+                        <div class="w-10 h-10 flex items-center justify-center bg-slate-100 rounded-full text-slate-400">
+                            <span class="material-symbols-outlined notranslate">steering_wheel</span>
                         </div>
-                        <div class="text-right opacity-30">
-                            <span class="material-symbols-outlined notranslate text-3xl">sensor_door</span>
+                        <div class="opacity-20">
+                            <span class="material-symbols-outlined notranslate text-2xl">sensor_door</span>
                         </div>
                     </div>
 
-                    <!-- Grid de Asientos (Inyectado por JS) -->
-                    <div id="bus-grid" class="grid grid-cols-4 gap-4 relative min-h-[400px]">
-                        <!-- El pasillo y asientos se generan en seats.js -->
+                    <!-- Grid de Asientos (5 Columnas para permitir el pasillo central) -->
+                    <div id="bus-grid" class="grid grid-cols-5 gap-3 relative min-h-[500px]">
+                        <!-- Se inyectan 4 botones y 1 espacio central vía JS -->
                     </div>
 
-                    <!-- Baño y Servicios -->
-                    <div class="mt-12 pt-8 border-t border-slate-200 flex justify-around opacity-20">
-                        <span class="material-symbols-outlined text-2xl">wc</span>
-                        <span class="material-symbols-outlined text-2xl">coffee</span>
+                    <div class="mt-10 pt-6 border-t border-slate-100 flex justify-around opacity-10">
+                        <span class="material-symbols-outlined text-xl">wc</span>
+                        <span class="material-symbols-outlined text-xl">coffee</span>
                     </div>
                 </div>
             </section>
 
             <!-- PANEL DE RESUMEN -->
-            <aside class="lg:col-span-4 space-y-6">
+            <aside class="lg:col-span-4 sticky top-32">
                 <div class="bg-white rounded-3xl border-t-8 border-secondary p-8 shadow-xl border border-outline-variant">
-                    <h2 class="text-[11px] font-black text-on-surface-variant mb-8 tracking-[0.2em] flex items-center gap-2 uppercase">
+                    <h2 class="text-[10px] font-black text-on-surface-variant mb-6 tracking-widest uppercase flex items-center gap-2">
                         <span class="material-symbols-outlined text-lg text-secondary">confirmation_number</span>
-                        Tu Reservación
+                        Resumen de Viaje
                     </h2>
 
                     <div class="space-y-6">
-                        <div class="flex flex-col gap-1">
-                            <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Trayecto</span>
-                            <div class="flex items-center gap-3 text-primary font-bold text-xl font-headline">
-                                <span>Villahermosa</span>
-                                <span class="material-symbols-outlined text-secondary text-base">arrow_forward</span>
-                                <span>Mérida</span>
+                        <div>
+                            <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-1">Asientos elegidos</span>
+                            <span id="selected-seats-display" class="text-xl font-black text-primary italic">--</span>
+                        </div>
+
+                        <div class="pt-6 border-t border-slate-100 flex justify-between items-end">
+                            <div>
+                                <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-1">Precio Total</span>
+                                <p class="text-3xl font-black text-primary font-headline tracking-tighter" id="total-price-display">$0.00</p>
                             </div>
+                            <p class="text-[10px] text-slate-400 font-bold uppercase">MXN</p>
                         </div>
 
-                        <div class="flex justify-between items-center py-5 border-y border-slate-100">
-                            <span class="text-sm font-semibold text-on-surface-variant italic">Asientos:</span>
-                            <span id="selected-seats-display" class="bg-secondary-fixed text-on-secondary-fixed-variant px-4 py-1 rounded-full text-xs font-black italic">--</span>
-                        </div>
-
-                        <div class="pt-4">
-                            <div class="flex justify-between items-end">
-                                <span class="text-primary font-bold text-sm uppercase">Total</span>
-                                <div class="text-right">
-                                    <p class="text-4xl font-black text-primary font-headline tracking-tighter" id="total-price-display">$0.00</p>
-                                    <p class="text-[10px] text-slate-400 font-bold uppercase tracking-widest mt-1">Pesos Mexicanos</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <button id="btn-pay" class="w-full bg-primary text-secondary-fixed py-5 rounded-2xl font-black shadow-lg hover:bg-slate-800 active:scale-95 transition-all flex items-center justify-center gap-3 uppercase tracking-widest text-xs mt-4">
-                            Pagar Ahora
-                            <span class="material-symbols-outlined text-sm">payments</span>
+                        <button class="w-full bg-primary text-secondary-fixed py-5 rounded-2xl font-black shadow-lg hover:bg-slate-800 active:scale-95 transition-all flex items-center justify-center gap-3 uppercase tracking-widest text-xs">
+                            Continuar al Pago
+                            <span class="material-symbols-outlined text-sm">arrow_forward</span>
                         </button>
                     </div>
-                </div>
-
-                <!-- Beneficios Acosta -->
-                <div class="bg-secondary/5 rounded-2xl p-6 border border-secondary/10">
-                    <h3 class="text-secondary font-bold text-xs uppercase mb-3 tracking-widest">Incluido en tu viaje</h3>
-                    <ul class="space-y-3">
-                        <li class="flex items-center gap-3 text-xs font-medium text-on-surface-variant">
-                            <span class="material-symbols-outlined text-sm text-secondary">wifi</span> WiFi de alta velocidad
-                        </li>
-                        <li class="flex items-center gap-3 text-xs font-medium text-on-surface-variant">
-                            <span class="material-symbols-outlined text-sm text-secondary">airline_seat_recline_extra</span> Reclinación 160°
-                        </li>
-                    </ul>
                 </div>
             </aside>
         </div>
     </main>
 
-    <footer class="bg-primary text-white py-12 mt-10">
-        <div class="max-w-[1200px] mx-auto px-8 text-center">
-            <div class="text-xl font-headline font-bold text-secondary-fixed mb-4 tracking-widest uppercase italic">Acosta</div>
-            <p class="text-[10px] opacity-40 uppercase tracking-widest">Servicio Ejecutivo del Sureste © 2024</p>
-        </div>
+    <footer class="bg-primary text-white/40 py-10 mt-10 text-center">
+        <p class="text-[10px] font-bold uppercase tracking-[0.3em]">Acosta Ejecutivo del Sureste</p>
     </footer>
 
-    <!-- Lógica de Negocio -->
     <script src="seats.js"></script>
 </body>
 </html>
