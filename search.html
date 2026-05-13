@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html class="light" lang="es">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Metropolis:wght@600;700;800&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .font-headline { font-family: 'Metropolis', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        /* Ocultar scrollbar en chrome/safari para el contenedor de filtros horizontal en móvil */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+    </style>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-surface-variant": "#44474d",
+                        "primary": "#031632",
+                        "secondary": "#775a19",
+                        "secondary-fixed": "#ffdea5",
+                        "primary-container": "#1a2b48",
+                        "surface-container": "#e7eeff",
+                        "background": "#f9f9ff",
+                        "on-primary": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "outline-variant": "#c5c6ce"
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-[#121c2c]">
+
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 bg-primary shadow-md">
+    <div class="max-w-[1200px] mx-auto px-4 md:px-8 py-4 flex justify-between items-center">
+        <div class="text-2xl font-bold text-on-primary font-headline">Acosta</div>
+        <nav class="hidden lg:flex gap-8 items-center text-sm">
+            <a class="text-on-primary font-medium hover:text-secondary-fixed transition-colors" href="#">Inicio</a>
+            <a class="text-secondary-fixed font-bold border-b-2 border-secondary-fixed pb-1" href="#">Mis Viajes</a>
+            <a class="text-on-primary font-medium hover:text-secondary-fixed transition-colors" href="#">Facturación</a>
+            <a class="text-on-primary font-medium hover:text-secondary-fixed transition-colors" href="#">Atención a Clientes</a>
+        </nav>
+        <button class="bg-secondary text-on-secondary px-4 py-2 rounded-lg font-bold text-sm hover:brightness-110 active:scale-95 transition-all">
+            Iniciar Sesión
+        </button>
+    </div>
+</header>
+
+<main class="pt-24 pb-16 max-w-[1200px] mx-auto px-4 md:px-8">
+    
+    <!-- Search Info Header (Mejorado para móvil) -->
+    <section class="mb-8 bg-primary-container p-6 md:p-8 rounded-2xl shadow-xl flex flex-col md:flex-row justify-between items-center gap-6">
+        <div class="flex items-center gap-4 md:gap-8">
+            <div class="text-center md:text-left">
+                <p class="text-[10px] uppercase tracking-widest text-on-primary opacity-60">Origen</p>
+                <h2 class="text-xl md:text-2xl font-bold text-white font-headline">Villahermosa</h2>
+            </div>
+            <span class="material-symbols-outlined text-secondary-fixed text-2xl rotate-90 md:rotate-0">multiple_stop</span>
+            <div class="text-center md:text-left">
+                <p class="text-[10px] uppercase tracking-widest text-on-primary opacity-60">Destino</p>
+                <h2 class="text-xl md:text-2xl font-bold text-white font-headline">Mérida</h2>
+            </div>
+        </div>
+        
+        <div class="w-full md:w-px h-px md:h-12 bg-white/20"></div>
+        
+        <div class="flex items-center justify-between w-full md:w-auto gap-8">
+            <div>
+                <p class="text-[10px] uppercase tracking-widest text-on-primary opacity-60">Fecha</p>
+                <p class="text-white font-bold">15 Oct, 2024</p>
+            </div>
+            <button class="flex items-center gap-2 text-secondary-fixed font-bold text-sm border border-secondary-fixed px-4 py-2 rounded-xl hover:bg-secondary-fixed/10 transition-all">
+                <span class="material-symbols-outlined text-sm">edit</span> Modificar
+            </button>
+        </div>
+    </section>
+
+    <div class="grid grid-cols-12 gap-6 lg:gap-10">
+        
+        <!-- Filters Sidebar (Horizontal en móvil, Vertical en Desktop) -->
+        <aside class="col-span-12 lg:col-span-3">
+            <div class="lg:sticky lg:top-28">
+                <h3 class="hidden lg:block text-xl font-bold mb-6 text-primary font-headline">Filtros</h3>
+                
+                <!-- Contenedor scrollable en móvil -->
+                <div class="flex lg:flex-col gap-6 overflow-x-auto no-scrollbar pb-4 lg:pb-0">
+                    
+                    <!-- Horario -->
+                    <div class="min-w-[200px] lg:min-w-full bg-white lg:bg-transparent p-4 lg:p-0 rounded-xl shadow-sm lg:shadow-none border lg:border-none border-slate-100">
+                        <p class="text-[11px] font-bold mb-3 uppercase tracking-wider text-slate-500">Horario</p>
+                        <div class="space-y-2">
+                            <label class="flex items-center gap-2 text-sm cursor-pointer hover:text-secondary">
+                                <input type="checkbox" class="rounded text-secondary focus:ring-secondary"> Mañana
+                            </label>
+                            <label class="flex items-center gap-2 text-sm cursor-pointer hover:text-secondary">
+                                <input type="checkbox" class="rounded text-secondary focus:ring-secondary"> Tarde
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Price Range -->
+                    <div class="min-w-[200px] lg:min-w-full bg-white lg:bg-transparent p-4 lg:p-0 rounded-xl shadow-sm lg:shadow-none border lg:border-none">
+                        <p class="text-[11px] font-bold mb-3 uppercase tracking-wider text-slate-500">Presupuesto</p>
+                        <input class="w-full h-1.5 bg-slate-200 rounded-lg appearance-none accent-secondary" type="range"/>
+                        <div class="flex justify-between mt-2 text-[10px] font-bold text-slate-400">
+                            <span>$850</span><span>$1,450</span>
+                        </div>
+                    </div>
+
+                    <!-- Luxury Banner (Hidden on Mobile) -->
+                    <div class="hidden lg:block mt-8 bg-surface-container p-6 rounded-2xl border border-blue-100">
+                        <p class="text-lg font-bold text-primary mb-2 italic font-headline">Luxury Travel</p>
+                        <p class="text-xs leading-relaxed text-slate-600">Asientos reclinables 160° y atención a bordo personalizada.</p>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Trip Results -->
+        <section class="col-span-12 lg:col-span-9 space-y-4">
+            <div class="flex justify-between items-center mb-4 px-2">
+                <p class="text-sm text-slate-500">Mostrando <span class="font-bold text-primary">12 viajes</span></p>
+                <select class="bg-transparent border-none font-bold text-primary text-xs focus:ring-0 cursor-pointer">
+                    <option>Precio más bajo</option>
+                    <option>Más rápido</option>
+                </select>
+            </div>
+
+            <!-- Trip Card 1 (Mejorado Responsive) -->
+            <div class="bg-white border-l-4 border-primary rounded-2xl shadow-sm hover:shadow-md transition-all overflow-hidden flex flex-col md:flex-row border border-slate-100">
+                <div class="p-6 md:p-8 flex-grow flex flex-col sm:flex-row items-center gap-6 md:gap-10">
+                    
+                    <!-- Horarios -->
+                    <div class="flex items-center justify-between w-full sm:w-auto gap-4 md:gap-8 min-w-[280px]">
+                        <div class="text-center">
+                            <p class="text-xl md:text-2xl font-bold text-primary font-headline">08:15</p>
+                            <p class="text-[10px] text-slate-400 uppercase font-bold">VSA</p>
+                        </div>
+                        <div class="flex-grow flex flex-col items-center">
+                            <span class="text-[10px] text-slate-400 font-bold mb-1">7h 30m</span>
+                            <div class="w-full h-[2px] bg-slate-100 relative">
+                                <div class="absolute -top-1 left-0 w-2 h-2 rounded-full bg-primary"></div>
+                                <div class="absolute -top-1 right-0 w-2 h-2 rounded-full border-2 border-primary bg-white"></div>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <p class="text-xl md:text-2xl font-bold text-primary font-headline">15:45</p>
+                            <p class="text-[10px] text-slate-400 uppercase font-bold">MID</p>
+                        </div>
+                    </div>
+
+                    <!-- Amenidades (Vertical en móvil para ahorrar espacio) -->
+                    <div class="flex flex-row sm:flex-col justify-between w-full sm:w-auto sm:border-l border-slate-100 sm:pl-8 gap-4">
+                        <span class="bg-slate-100 text-primary text-[9px] font-black px-2 py-1 rounded-md uppercase">Ejecutivo</span>
+                        <div class="flex gap-3 text-slate-400">
+                            <span class="material-symbols-outlined text-lg">wifi</span>
+                            <span class="material-symbols-outlined text-lg">wc</span>
+                            <span class="material-symbols-outlined text-lg">electric_bolt</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Precio y Botón (Color destacado en móvil) -->
+                <div class="bg-slate-50 md:bg-white p-6 flex flex-row md:flex-col items-center justify-between md:justify-center min-w-[180px] border-t md:border-t-0 md:border-l border-slate-100">
+                    <div class="text-left md:text-center">
+                        <p class="text-[10px] text-slate-400 line-through md:block hidden">$1,200</p>
+                        <p class="text-xl md:text-2xl font-bold text-primary font-headline">$980 <span class="text-xs font-normal">MXN</span></p>
+                    </div>
+                    <button class="bg-secondary text-white px-6 py-2.5 rounded-xl font-bold text-sm hover:scale-105 transition-all shadow-lg shadow-secondary/20">
+                        Seleccionar
+                    </button>
+                </div>
+            </div>
+
+            <!-- Trip Card 2 (Premium Choice) -->
+            <div class="bg-white border-l-4 border-secondary-fixed rounded-2xl shadow-sm hover:shadow-md transition-all overflow-hidden flex flex-col md:flex-row border border-slate-100 relative">
+                <div class="absolute top-0 right-0 bg-secondary text-white text-[8px] font-black px-3 py-1 rounded-bl-lg uppercase tracking-tighter">Recomendado</div>
+                
+                <div class="p-6 md:p-8 flex-grow flex flex-col sm:flex-row items-center gap-6 md:gap-10">
+                    <div class="flex items-center justify-between w-full sm:w-auto gap-4 md:gap-8 min-w-[280px]">
+                        <div class="text-center">
+                            <p class="text-xl md:text-2xl font-bold text-primary font-headline">11:00</p>
+                            <p class="text-[10px] text-slate-400 font-bold">VSA</p>
+                        </div>
+                        <div class="flex-grow flex flex-col items-center">
+                            <span class="text-[10px] text-secondary font-black mb-1">Directo</span>
+                            <div class="w-full h-[2px] bg-secondary-fixed relative">
+                                <div class="absolute -top-1 left-0 w-2 h-2 rounded-full bg-secondary"></div>
+                                <div class="absolute -top-1 right-0 w-2 h-2 rounded-full border-2 border-secondary bg-white"></div>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <p class="text-xl md:text-2xl font-bold text-primary font-headline">18:15</p>
+                            <p class="text-[10px] text-slate-400 font-bold">MID</p>
+                        </div>
+                    </div>
+                    <div class="flex flex-row sm:flex-col justify-between w-full sm:w-auto sm:border-l border-slate-100 sm:pl-8 gap-4">
+                        <span class="bg-primary text-white text-[9px] font-black px-2 py-1 rounded-md uppercase">Gold Class</span>
+                        <div class="flex gap-3 text-secondary">
+                            <span class="material-symbols-outlined text-lg">airline_seat_flat</span>
+                            <span class="material-symbols-outlined text-lg">coffee</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-primary md:bg-white p-6 flex flex-row md:flex-col items-center justify-between md:justify-center min-w-[180px] text-white md:text-primary">
+                    <div class="text-left md:text-center">
+                        <p class="text-xl md:text-2xl font-bold font-headline">$1,350 <span class="text-xs font-normal">MXN</span></p>
+                        <p class="text-[9px] text-secondary-fixed font-bold">4 ASIENTOS RESTANTES</p>
+                    </div>
+                    <button class="bg-white md:bg-secondary text-primary md:text-white px-6 py-2.5 rounded-xl font-bold text-sm shadow-xl">
+                        Seleccionar
+                    </button>
+                </div>
+            </div>
+
+        </section>
+    </div>
+</main>
+
+<footer class="bg-primary text-on-primary py-12">
+    <div class="max-w-[1200px] mx-auto px-4 text-center">
+        <div class="text-2xl font-bold text-secondary-fixed mb-6 font-headline">Acosta</div>
+        <div class="flex flex-wrap justify-center gap-6 text-xs opacity-70 mb-8">
+            <a href="#" class="hover:text-white hover:underline">Privacidad</a>
+            <a href="#" class="hover:text-white hover:underline">Términos</a>
+            <a href="#" class="hover:text-white hover:underline">Preguntas</a>
+            <a href="#" class="hover:text-white hover:underline">Contacto</a>
+        </div>
+        <p class="text-[10px] opacity-50 mb-6">© 2024 Acosta. Transporte Ejecutivo del Sureste.</p>
+        <div class="flex justify-center gap-4">
+            <div class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-secondary transition-colors cursor-pointer">
+                <span class="material-symbols-outlined text-sm">alternate_email</span>
+            </div>
+            <div class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-secondary transition-colors cursor-pointer">
+                <span class="material-symbols-outlined text-sm">language</span>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
