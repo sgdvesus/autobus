@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html class="light" lang="es">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Metropolis:wght@600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .font-headline-sm, .font-headline-md, .font-headline-lg { font-family: 'Metropolis', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        /* Suavizar scroll */
+        html { scroll-behavior: smooth; }
+    </style>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-surface-variant": "#44474d",
+                        "secondary": "#775a19",
+                        "primary": "#031632",
+                        "background": "#f9f9ff",
+                        "on-primary": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "secondary-fixed": "#ffdea5",
+                        "surface-container-low": "#f0f3ff",
+                        "outline-variant": "#c5c6ce",
+                        "on-primary-container": "#8293b5",
+                    },
+                    spacing: {
+                        "container-max": "1200px"
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface overflow-x-hidden">
+
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 bg-primary shadow-lg">
+    <div class="max-w-container-max mx-auto px-4 md:px-8 py-4 flex justify-between items-center">
+        <div class="text-2xl md:text-3xl font-bold text-on-primary">Acosta</div>
+        
+        <!-- Desktop Nav -->
+        <nav class="hidden lg:flex items-center gap-8">
+            <a class="text-secondary-fixed font-bold border-b-2 border-secondary-fixed pb-1 text-sm" href="#">Inicio</a>
+            <a class="text-on-primary font-medium hover:text-secondary-fixed transition-colors text-sm" href="#">Mis Viajes</a>
+            <a class="text-on-primary font-medium hover:text-secondary-fixed transition-colors text-sm" href="#">Facturación</a>
+            <a class="text-on-primary font-medium hover:text-secondary-fixed transition-colors text-sm" href="#">Atención a Clientes</a>
+        </nav>
+
+        <div class="flex items-center gap-4">
+            <button class="hidden sm:block bg-secondary text-on-secondary px-5 py-2.5 rounded-lg font-bold text-sm active:scale-95 duration-150 transition-all">Iniciar Sesión</button>
+            <!-- Mobile Menu Toggle (Simplified) -->
+            <button class="lg:hidden text-on-primary">
+                <span class="material-symbols-outlined text-3xl">menu</span>
+            </button>
+        </div>
+    </div>
+</header>
+
+<main>
+    <!-- Hero Section -->
+    <section class="relative min-h-[90vh] md:h-[800px] flex items-center justify-center pt-20 overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img alt="Executive Travel" class="w-full h-full object-cover brightness-[0.35]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJIRK0pWZC_LR_u1zlfQ1XIk6Q-2drmg6nzxuUz9LbKNbwYtMtPSxxrzEQ_hduICOLj-8J_30bFJTkFwlMQFEP9axrSlpHKDh3th_LoIz2wrYVWdpTFQPI5mRel_CdG3zENfsT67ES--vAp9dlkicx0Q_74qAepNyndhUiMZr2B3Ci503DsRq0BRl-J8qPHCfFOiPeyg0xb_CgcyeMGwIiAlShWj6zB3W2moEk-NA_vuTlD0Fr1OxEs-nCIAO6ER2kgPUJ85Kuly7Q"/>
+        </div>
+        
+        <div class="relative z-10 w-full max-w-container-max px-4 md:px-8 py-12">
+            <div class="mb-8 md:mb-12 text-center lg:text-left">
+                <h1 class="text-3xl md:text-5xl lg:text-6xl font-bold text-on-primary mb-4 leading-tight">
+                    Tu Viaje Ejecutivo <br class="hidden md:block"> por el Sureste
+                </h1>
+                <p class="text-lg md:text-xl text-on-primary-container max-w-2xl mx-auto lg:mx-0">
+                    Puntualidad, seguridad y el máximo confort en cada kilómetro.
+                </p>
+            </div>
+
+            <!-- Trip Planner (Search Bar) - Totalmente Responsive -->
+            <div class="bg-white/95 backdrop-blur p-4 md:p-6 rounded-2xl shadow-2xl max-w-5xl mx-auto lg:mx-0">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+                    <div class="flex flex-col gap-1">
+                        <label class="text-xs font-bold text-on-surface-variant uppercase ml-1">Origen</label>
+                        <select class="w-full bg-slate-100 border-none rounded-xl py-3 px-4 text-sm focus:ring-2 focus:ring-secondary">
+                            <option>Villahermosa</option>
+                            <option>Cárdenas</option>
+                            <option>Comalcalco</option>
+                        </select>
+                    </div>
+                    <div class="flex flex-col gap-1">
+                        <label class="text-xs font-bold text-on-surface-variant uppercase ml-1">Destino</label>
+                        <input class="w-full bg-slate-100 border-none rounded-xl py-3 px-4 text-sm focus:ring-2 focus:ring-secondary" placeholder="¿A dónde vas?" type="text"/>
+                    </div>
+                    <div class="flex flex-col gap-1">
+                        <label class="text-xs font-bold text-on-surface-variant uppercase ml-1">Fecha</label>
+                        <input class="w-full bg-slate-100 border-none rounded-xl py-3 px-4 text-sm focus:ring-2 focus:ring-secondary" type="date"/>
+                    </div>
+                    <div class="flex flex-col gap-1">
+                        <label class="text-xs font-bold text-on-surface-variant uppercase ml-1">Pasajeros</label>
+                        <input class="w-full bg-slate-100 border-none rounded-xl py-3 px-4 text-sm focus:ring-2 focus:ring-secondary" min="1" type="number" value="1"/>
+                    </div>
+                    <div class="flex items-end">
+                        <button class="w-full bg-secondary text-white font-bold py-3.5 rounded-xl shadow-lg hover:bg-opacity-90 transition-all active:scale-95">
+                            Buscar Viaje
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="py-16 md:py-24 bg-white">
+        <div class="max-w-container-max mx-auto px-4 md:px-8">
+            <div class="text-center mb-12 md:mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-primary">Experiencia Acosta Premium</h2>
+                <p class="text-slate-500 mt-3">Diseñamos cada detalle para tu comodidad total.</p>
+            </div>
+            <!-- Grid adaptable -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="flex flex-col items-center text-center p-6 md:p-8 bg-surface-container-low rounded-2xl border border-outline-variant hover:shadow-xl transition-all group">
+                    <span class="material-symbols-outlined text-secondary text-5xl mb-4 group-hover:scale-110 transition-transform">ac_unit</span>
+                    <h3 class="text-xl font-bold text-primary mb-2">Aire Acondicionado</h3>
+                    <p class="text-sm text-on-surface-variant">Mantente fresco frente al intenso calor del sureste.</p>
+                </div>
+                <div class="flex flex-col items-center text-center p-6 md:p-8 bg-surface-container-low rounded-2xl border border-outline-variant hover:shadow-xl transition-all group">
+                    <span class="material-symbols-outlined text-secondary text-5xl mb-4 group-hover:scale-110 transition-transform">wifi</span>
+                    <h3 class="text-xl font-bold text-primary mb-2">WiFi Alta Velocidad</h3>
+                    <p class="text-sm text-on-surface-variant">Conectividad ininterrumpida para trabajar o disfrutar.</p>
+                </div>
+                <div class="flex flex-col items-center text-center p-6 md:p-8 bg-surface-container-low rounded-2xl border border-outline-variant hover:shadow-xl transition-all group">
+                    <span class="material-symbols-outlined text-secondary text-5xl mb-4 group-hover:scale-110 transition-transform">airline_seat_recline_extra</span>
+                    <h3 class="text-xl font-bold text-primary mb-2">Asientos Premium</h3>
+                    <p class="text-sm text-on-surface-variant">Diseño ergonómico de piel para un descanso real.</p>
+                </div>
+                <div class="flex flex-col items-center text-center p-6 md:p-8 bg-surface-container-low rounded-2xl border border-outline-variant hover:shadow-xl transition-all group">
+                    <span class="material-symbols-outlined text-secondary text-5xl mb-4 group-hover:scale-110 transition-transform">usb</span>
+                    <h3 class="text-xl font-bold text-primary mb-2">Conectores USB</h3>
+                    <p class="text-sm text-on-surface-variant">Carga tus dispositivos y llega siempre con batería.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Promotional Section -->
+    <section class="py-16 md:py-24 bg-primary text-on-primary">
+        <div class="max-w-container-max mx-auto px-4 md:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div class="order-2 lg:order-1">
+                <span class="text-secondary-fixed text-sm font-bold uppercase tracking-widest mb-4 block">Confianza Acosta</span>
+                <h2 class="text-3xl md:text-5xl font-bold mb-6 leading-tight">Viaja con Confianza Ejecutiva</h2>
+                <p class="text-lg text-on-primary-container mb-8">
+                    Conductores certificados, rastreo satelital en tiempo real y protocolos de seguridad de clase mundial.
+                </p>
+                <ul class="space-y-4">
+                    <li class="flex items-center gap-3">
+                        <span class="material-symbols-outlined text-secondary-fixed" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                        <span>Puntualidad Garantizada</span>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <span class="material-symbols-outlined text-secondary-fixed" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                        <span>Monitoreo 24/7</span>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <span class="material-symbols-outlined text-secondary-fixed" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                        <span>Seguro de Viajero Incluido</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="order-1 lg:order-2 relative">
+                <div class="absolute -inset-4 bg-secondary/10 rounded-full blur-3xl"></div>
+                <img alt="Seguridad" class="relative rounded-2xl shadow-2xl z-10 w-full aspect-video lg:aspect-square object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDjhEIvGPQals2_rBkXXLavg_tXd30oN685sK9riBj9CkwLItkAfnP3qzhqQLFYtfeX1GIS-GsA9JY-bD2TU83aENPpvp5GZflEJ1E_p4ES6_SsLpDfszqb8iycr1vpuk0Tb3zz9xRrtipuj8t7KLuUtLTszdCeFWQHPkhg6gITqSrvzSU93WbTWrzeNl4pbrxiOqQlFlw91O9jfpMPwk2e63O6Q7PKDNdd-NlwojzkMuk0m2VtL8ObJ9JWk2-ENEt9n4g55S1x12uf"/>
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- Footer -->
+<footer class="bg-primary text-on-primary border-t border-slate-800">
+    <div class="max-w-container-max mx-auto px-4 md:px-8 py-12 flex flex-col items-center gap-8">
+        <div class="text-3xl font-bold text-secondary-fixed">Acosta</div>
+        <nav class="flex flex-wrap justify-center gap-x-8 gap-y-4 text-sm text-on-primary-container">
+            <a class="hover:text-on-primary hover:underline transition-all" href="#">Aviso de Privacidad</a>
+            <a class="hover:text-on-primary hover:underline transition-all" href="#">Términos y Condiciones</a>
+            <a class="hover:text-on-primary hover:underline transition-all" href="#">Preguntas Frecuentes</a>
+            <a class="hover:text-on-primary hover:underline transition-all" href="#">Contacto</a>
+        </nav>
+        <div class="flex items-center gap-8 opacity-70">
+            <div class="flex flex-col items-center gap-1">
+                <span class="material-symbols-outlined text-3xl">payments</span>
+                <span class="text-[10px] uppercase font-bold">OXXO Pay</span>
+            </div>
+            <div class="flex flex-col items-center gap-1">
+                <span class="material-symbols-outlined text-3xl">credit_card</span>
+                <span class="text-[10px] uppercase font-bold">Tarjetas</span>
+            </div>
+        </div>
+        <p class="text-sm text-slate-400 text-center">
+            © 2024 Acosta. Todos los derechos reservados. <br class="md:hidden"> Transporte Ejecutivo del Sureste.
+        </p>
+    </div>
+</footer>
+
+</body>
+</html>
